@@ -1,0 +1,14 @@
+---
+- name: Czyszczenie dockerów
+  hosts: all
+  tasks:
+    - name: docker prune
+      become: True
+      docker_prune:
+        containers: yes
+        images: yes
+        images_filters:
+          dangling: false
+        networks: yes
+        volumes: yes
+        builder_cache: yes
