@@ -1,0 +1,5 @@
+- name: docker package installation
+  hosts: all
+  tasks:
+    - name: Just get the list from default pip
+      community.general.pip_package_info:
