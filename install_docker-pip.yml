@@ -1,5 +1,9 @@
 - name: docker package installation
   hosts: all
   tasks:
+    - name: install pip3
+      apt:
+        name: python3-pip
+        state: present
     - name: Ju22st get the list from default pip
       pip_package_info:
