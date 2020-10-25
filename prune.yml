@@ -1,5 +1,14 @@
 ---
-- name: Ping hosts
+- name: Czyszczenie dockerów
   hosts: all
   tasks:
-    - action: ping
+    - name: docker prune
+      become: True
+      docker_prune:
+        containers: yes
+        images: yes
+        images_filters:
+          dangling: false
+        networks: yes
+        volumes: yes
+        builder_cache: yes
