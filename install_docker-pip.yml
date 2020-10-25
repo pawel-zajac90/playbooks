@@ -1,6 +1,6 @@
 - name: docker package installation
   hosts: all
-  become: True
+  become: no
   tasks:
     - name: install pip3
       apt:
