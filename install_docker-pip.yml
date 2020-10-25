@@ -5,6 +5,5 @@
       apt:
         name: python3-pip
         state: present
-    - name: Just get the list from default pip
-      pip_package_info:
-        executable: pip3
+    - name: Install docker
+      command: pip3 install docker
