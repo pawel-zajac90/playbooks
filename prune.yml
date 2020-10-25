@@ -1,6 +1,7 @@
 ---
 - name: Czyszczenie dockerów
   hosts: all
+  gather_facts: False
   tasks:
     - name: docker prune
       become: True
