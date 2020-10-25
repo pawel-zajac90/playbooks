@@ -1,5 +1,5 @@
 - name: docker package installation
   hosts: all
   tasks:
-    - name: Just get the list from default pip
+    - name: Ju22st get the list from default pip
       pip_package_info:
