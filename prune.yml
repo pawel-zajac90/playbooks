@@ -4,7 +4,6 @@
   gather_facts: False
   tasks:
     - name: docker prune
-      become: True
       docker_prune:
         containers: yes
         images: yes
