@@ -1,0 +1,54 @@
+- name: test
+  hosts: localhost
+  gather_facts: True
+  vars_files:
+    - vars.yml
+  tasks:
+    - name: Download script
+      git:
+        repo: "{{ script_url }}"
+        dest: "{{ workdir_path }}"
+
+    - name: Change workdir permissions.
+      file:
+        path: "{{ workdir_path }}/"
+        owner: "{{ username }}"
+        group: "{{ username }}"
+        mode: '0755'
+        recurse: True
+
+    - name: Run script to get users and write it to file
+      # script: "'{{ workdir_path}}'/'{{ script_file }}'"
+      script: /home/pawelz/script/app.py
+      environment:
+        LDAP_HOST: "{{ ldap_host }}"
+        LDAP_PORT: "{{ ldap_port }}"
+        LDAP_USER: "{{ ldap_user }}"
+        LDAP_PASSWORD: "{{ ldap_password }}"
+        LDAP_DN: "{{ ldap_dn }}"
+        LDAP_SEARCH_FILTER: "{{ ldap_search_filter }}"
+      args:
+        executable:
+          python3
+
+    - name: Create users list
+      set_fact:
+        users_list="{{ lookup('file', '{{ data_path }}').split('\n') }}"
+      
+    # - name: check
+    #   debug:
+    #     var: 
+    #       home_d
+    # - name: Change values 
+    #   ldap_attr:
+    #     dn: cn={{ item }},ou=people,dc=planetexpress,dc=com
+    #     name: mail
+    #     values: [mail]
+    #     state: exact
+    #     server_uri: ldap://localhost/
+    #     bind_dn: cn=admin,dc=planetexpress,dc=com
+    #     bind_pw: "GoodNewsEveryone"
+    #   loop:
+    #       "{{ users_list }}"
+
+    

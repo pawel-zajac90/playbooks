@@ -1,0 +1,12 @@
+ldap_host: "localhost"
+ldap_port: 389
+ldap_user: 'cn=admin,dc=planetexpress,dc=com'
+ldap_password: 'GoodNewsEveryone'
+ldap_dn: 'ou=people,dc=planetexpress,dc=com'
+ldap_search_filter: '(objectClass=person)'
+
+data_path: '~/Repos/playbooks/training/test/script/data.txt'
+username: pawelz
+script_url: https://github.com/pawel-zajac90/ldap_script.git
+workdir_path: "~/script"
+script_file: "app.py"
